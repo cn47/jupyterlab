@@ -1,0 +1,6 @@
+click
+jupyterlab
+numpy
+pandas
+pyyaml
+toml
