@@ -3,7 +3,7 @@ FROM python:3.10.1-slim-buster
 ENV LANG=ja_JP.UTF-8 \
     LANGUAGE=ja_JP:ja \
     LC_ALL=ja_JP.UTF-8 \
-    TZ=JST-9 \
+    TZ=Asia/Tokyo \
     TERM=xterm-256color \
     PYTHONUTF8=1 \
     PYTHONDONTWRITEBYTECODE=1 \
@@ -27,6 +27,6 @@ RUN pip install --upgrade \
         pip \
         setuptools \
     && pip install -r requirements.txt \
-    && rm -rf ~/.pip/cache
+    && rm -rf ${HOME}/.pip/cache
 
 CMD bash

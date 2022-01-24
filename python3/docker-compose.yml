@@ -2,6 +2,7 @@ version: '3'
 
 services:
   python3:
+    user: ${UID}:${GID}
     container_name: 'python3'
     restart: always
     build: .
@@ -10,4 +11,6 @@ services:
       - /etc/passwd:/etc/passwd:ro
       - /etc/group:/etc/group:ro
       - ./opt:/opt
+    ports:
+      - '8888:8888'
     tty: true
