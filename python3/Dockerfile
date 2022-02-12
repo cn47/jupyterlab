@@ -1,24 +1,18 @@
-FROM python:3.10.1-slim-buster
-
-ENV LANG=ja_JP.UTF-8 \
-    LANGUAGE=ja_JP:ja \
-    LC_ALL=ja_JP.UTF-8 \
-    TZ=Asia/Tokyo \
-    TERM=xterm-256color \
-    PYTHONUTF8=1 \
-    PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1 \
-    PIP_DISABLE_PIP_VERSION_CHECK=on \
-    PIP_NO_CACHE_DIR=off
+FROM python:3.10.2-slim-buster
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        less \
+        curl \
+        git \
         locales \
+        less \
+        tree \
+        unzip \
         vim \
+        wget \
+        zsh \
     && localedef -f UTF-8 -i ja_JP ja_JP.UTF-8 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
-
 
 WORKDIR /tmp
 COPY requirements.txt /tmp
@@ -28,5 +22,3 @@ RUN pip install --upgrade \
         setuptools \
     && pip install -r requirements.txt \
     && rm -rf ${HOME}/.pip/cache
-
-CMD bash

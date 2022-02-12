@@ -4,13 +4,19 @@ services:
   python3:
     user: ${UID}:${GID}
     container_name: 'python3'
+    env_file:
+      - env_file.env
     restart: always
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     working_dir: /opt
     volumes:
       - /etc/passwd:/etc/passwd:ro
       - /etc/group:/etc/group:ro
+      - ${HOME}:${HOME}
       - ./opt:/opt
     ports:
       - '8888:8888'
     tty: true
+    command: ipython

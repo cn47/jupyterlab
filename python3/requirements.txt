@@ -1,4 +1,5 @@
 click
+glances
 jupyterlab
 numpy
 pandas
