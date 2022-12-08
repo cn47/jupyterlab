@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  jupyterlab:
+    image: jupyterlab:latest
+    container_name: 'jupyterlab'
+    user: 1000:1000
+    restart: always
+    env_file:
+      - env_file.env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /home
+    volumes:
+      - /etc/passwd:/etc/passwd:ro
+      - /etc/group:/etc/group:ro
+      - ~/jupyter:/home # jupyter home directory
+      - ~:/home/host # host home directory
+      - ./.jupyter:/home/cn47/.jupyter # jupyterlab settings share -> /home/<username>/.jupyter
+    expose:
+      - 8889
+    ports:
+      - 8889:8889
+    tty: true
+    entrypoint: jupyter-lab --allow-root --ip=0.0.0.0 --port=8889 --no-browser --NotebookApp.token=''
