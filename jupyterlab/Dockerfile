@@ -20,21 +20,13 @@ RUN pip install --upgrade \
     && rm -rf ${HOME}/.pip/cache
 
 RUN pip install \
-        pandas \
-        numpy \
-        polars \
-        scikit-learn \
-        click \
-        pendulum \
-        plotly \
-        tqdm \
         jupyterlab \
     && rm -rf ${HOME}/.pip/cache
 
 RUN curl -sL https://deb.nodesource.com/setup_18.x |bash - \
     && apt-get install -y --no-install-recommends \
-    nodejs \
-    yarn
+        nodejs \
+        yarn
 
 # fonts(RictyDiminished)
 RUN cd ${HOME} \
@@ -49,11 +41,11 @@ RUN pip install \
          jupyterlab_execute_time \
          jupyterlab-code-formatter black isort autopep8 \
          jupyterlab-nvdashboard \
-         jupyterlab_tabnine \
          jupyterlab-git \
          stickyland \
          jupyterlab_autoscrollcelloutput \
     && rm -rf ${HOME}/.pip/cache
+         # jupyterlab_tabnine \ # disable temporarily
 
 # plotly, widget, theme
 # theme(https://pystyle.info/jupyterlab-list-of-themes/)
@@ -62,3 +54,16 @@ RUN jupyter labextension install \
          plotlywidget \
          jupyterlab-plotly \
          jupyterlab-tailwind-theme
+
+RUN pip install \
+        pandas \
+        numpy \
+        polars \
+        scikit-learn \
+        click \
+        pendulum \
+        plotly \
+        kaleido \
+        tqdm \
+    && rm -rf ${HOME}/.pip/cache
+
