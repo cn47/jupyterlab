@@ -1,4 +1,4 @@
-FROM python:3.10.2-slim-buster
+FROM python:3.9.10-slim-buster
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         curl \
@@ -22,3 +22,8 @@ RUN pip install --upgrade \
         setuptools \
     && pip install -r requirements.txt \
     && rm -rf ${HOME}/.pip/cache
+
+ARG HOME_DIR=/home/cn47
+RUN mkdir -p ${HOME_DIR}/.local/share/ptpython
+COPY ptpython_config.py ${HOME_DIR}/.config/ptpython/config.py
+RUN chmod -R 777 ${HOME_DIR}

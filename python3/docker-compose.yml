@@ -2,7 +2,8 @@ version: '3'
 
 services:
   python3:
-    user: ${UID}:${GID}
+    image: python3:3.9.10
+    user: 1000:1000
     container_name: 'python3'
     env_file:
       - env_file.env
@@ -16,7 +17,5 @@ services:
       - /etc/group:/etc/group:ro
       - ${HOME}:${HOME}
       - ./opt:/opt
-    ports:
-      - '8888:8888'
     tty: true
-    command: ipython
+    command: ptpython
