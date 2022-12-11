@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  jupyterlab-gpu:
+    image: jupyterlab-gpu:latest
+    container_name: 'jupyterlab-gpu'
+    runtime: nvidia
+    user: 1000:1000
+    restart: always
+    env_file:
+      - env_file.env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /home
+    volumes:
+      - /etc/passwd:/etc/passwd:ro
+      - /etc/group:/etc/group:ro
+      - ${MOUNT_HOST_HOME}
+      - ${MOUNT_JUPYTER_HOME}
+      - ${MOUNT_JUPYTER_USER_SETTINGS}
+      - ${MOUNT_JUPYTER_NOTEBOOK_SETTINGS}
+    expose:
+      - 8889
+    ports:
+      - 8889:8889
+    tty: true
+    entrypoint: jupyter-lab --allow-root --ip=0.0.0.0 --port=8889 --no-browser --NotebookApp.token='' --NotebookApp.password='' --NotebookApp.disable_check_xsrf=True
