@@ -15,9 +15,10 @@ services:
     volumes:
       - /etc/passwd:/etc/passwd:ro
       - /etc/group:/etc/group:ro
-      - ~/jupyter:/home # jupyter home directory
-      - ~:/home/host # host home directory
-      - ./.jupyter:/home/cn47/.jupyter # jupyterlab settings share -> /home/<username>/.jupyter
+      - ${MOUNT_HOST_HOME}
+      - ${MOUNT_JUPYTER_HOME}
+      - ${MOUNT_JUPYTER_USER_SETTINGS}
+      - ${MOUNT_JUPYTER_NOTEBOOK_SETTINGS}
     expose:
       - 8889
     ports:
