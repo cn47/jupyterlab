@@ -1,8 +1,7 @@
 FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04
 
 ARG _PYTHON_VER=3.9
-ARG  PYTHON_VER=3.9.10
-
+ARG  PYTHON_VER=3.9.13
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         curl \
@@ -14,10 +13,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
         unzip \
         git \
+        libgomp1 \
+        sudo \
     && localedef -f UTF-8 -i ja_JP ja_JP.UTF-8 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+ARG USER
+RUN useradd --uid 1000 -G sudo,root ${USER} \
+    && echo "${USER} ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers.d/1000
 
 # install python
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -62,10 +66,15 @@ RUN curl -sL https://deb.nodesource.com/setup_18.x |bash - \
         yarn
 
 # fonts(RictyDiminished)
-RUN cd ${HOME} \
-    wget https://github.com/mzyy94/RictyDiminished-for-Powerline/raw/master/RictyDiminished-Regular.ttf \
-    mkdir -p ${HOME}/.jupyter/custom/fonts \
-    cp ${HOME}/RictyDiminished-Regular.ttf ${HOME}/.jupyter/custom/fonts
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        fontconfig \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* \
+    && cd /home \
+    && wget https://github.com/mzyy94/RictyDiminished-for-Powerline/raw/master/RictyDiminished-Regular.ttf \
+    && cp /home/RictyDiminished-Regular.ttf /usr/share/fonts/ \
+    && rm -rf /home/**/.cache/matplotlib/fontlist-*
+
 
 # reinstall pip
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py

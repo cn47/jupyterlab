@@ -4,6 +4,7 @@ jupyter_home_path=${HOME}/jupyter
 input_val=$1
 
 export USER_NAME=`whoami`
+export PORT=8889
 export MOUNT_HOST_HOME="${HOME}:/home/host"
 export MOUNT_JUPYTER_HOME="${jupyter_home_path}:/home"
 export MOUNT_JUPYTER_USER_SETTINGS="./jupyter_user_settings:/home/${USER_NAME}/.jupyter/lab/user-settings"
