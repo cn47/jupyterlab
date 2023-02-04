@@ -6,8 +6,6 @@ services:
     container_name: 'jupyterlab'
     user: 1000:1000
     restart: always
-    env_file:
-      - env_file.env
     build:
       context: .
       dockerfile: Dockerfile
