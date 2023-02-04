@@ -9,8 +9,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        - USER=${USER}
     environment:
       - LANG=ja_JP.UTF-8
       - LANGUAGE=ja_JP:ja
@@ -25,12 +23,12 @@ services:
       - PYTHONPATH=
     working_dir: /home
     volumes:
-      - /etc/passwd:/etc/passwd:ro
-      - /etc/group:/etc/group:ro
       - ${MOUNT_HOST_HOME}
       - ${MOUNT_JUPYTER_HOME}
       - ${MOUNT_JUPYTER_USER_SETTINGS}
       - ${MOUNT_JUPYTER_NOTEBOOK_SETTINGS}
+      - ${MOUNT_IPYTHON_SETTINGS}
+      - ${MOUNT_PTPYTHON_SETTINGS}
     expose:
       - ${PORT}
     ports:

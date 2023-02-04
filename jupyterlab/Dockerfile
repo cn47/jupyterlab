@@ -76,8 +76,9 @@ RUN pip install \
         tqdm \
     && rm -rf ${HOME}/.pip/cache
 
-ENV PATH=${PATH}:/home/${USER}/.local/bin
+ENV PATH=${PATH}:/home/jupyter/.local/bin
 
-ARG USER
-RUN useradd --uid 1000 -G sudo,root ${USER} \
-    && echo "${USER} ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers.d/1000
+RUN useradd --uid 1000 -G sudo,root jupyter \
+    && echo "jupyter ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers.d/1000
+
+RUN pip install ptpython
