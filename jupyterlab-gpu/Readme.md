@@ -5,21 +5,23 @@
 ps aux | grep "[d]ocker" | grep -v $0 ; if [ $? -eq 1   ]; then sudo service docker start; fi
 ```
 
-#### . run.shのjupyterlabのHOMEパスを適宜変更する
+#### ./run.shのjupyterlabのHOMEパスを適宜変更する
 特に変更しなければ${HOME}/jupyter-gpuディレクトリ以下で次を連携する
-* hostのホーム(~:/home/<username>)
-* jupyterのホーム(~/jupyter-gpu:home)
-* jupyterlabの設定ファイル(./jupyter_user_settings:/home/\${USER_NAME}/.jupyter/lab/user-settings)
-* jupyter notebookの設定ファイル(./jupyter_notebook_config.py:/home/\${USER_NAME}/.jupyter/jupyter_notebook_config.py)
+* hostのホーム: MOUNT_HOST_HOME
+* jupyterのホーム: MOUNT_JUPYTER_HOME
+* jupyterlabの設定ファイル: MOUNT_JUPYTER_USER_SETTINGS
+* jupyter notebookの設定ファイル: MOUNT_JUPYTER_NOTEBOOK_SETTINGS
+* ipythonの設定ファイル: MOUNT_IPYTHON_SETTINGS
+* ptpythonの設定ファイル: MOUNT_PTPYTHON_SETTINGS
 
 #### run.shを実行する
 * jupyterlabサーバを起動する
 ``` bahs
-. ./run.sh up
+sh ./run.sh up
 ```
 * jupyterlabサーバを落とす
 ``` bahs
-. ./run.sh down
+sh ./run.sh down
 ```
 
 なおサーバを落としたあともpipやworkspace情報などは\${HOME}/jupyter-gpuディレクトリ以下に残っているため次回以降のupでも引き継がれる
