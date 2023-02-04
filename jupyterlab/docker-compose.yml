@@ -2,7 +2,7 @@ version: '3'
 
 services:
   jupyterlab:
-    image: jupyterlab:latest
+    image: cn47/jupyterlab:latest
     container_name: 'jupyterlab'
     user: 1000:1000
     restart: always
@@ -10,18 +10,7 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      - LANG=ja_JP.UTF-8
-      - LANGUAGE=ja_JP:ja
-      - LC_ALL=ja_JP.UTF-8
-      - TZ=Asia/Tokyo
-      - TERM=xterm-256color
-      - PYTHONUTF8=1
-      - PYTHONDONTWRITEBYTECODE=1
-      - PYTHONUNBUFFERED=1
-      - PIP_DISABLE_PIP_VERSION_CHECK=on
-      - PIP_NO_CACHE_DIR=off
       - PYTHONPATH=
-    working_dir: /home
     volumes:
       - ${MOUNT_HOST_HOME}
       - ${MOUNT_JUPYTER_HOME}
@@ -36,9 +25,9 @@ services:
     tty: true
     entrypoint: >
       jupyter-lab
-      --allow-root
-      --ip=0.0.0.0 --port=${PORT}
-      --no-browser
-      --NotebookApp.token=''
-      --NotebookApp.password=''
-      --NotebookApp.disable_check_xsrf=True
+        --allow-root
+        --ip=0.0.0.0 --port=${PORT}
+        --no-browser
+        --NotebookApp.token=''
+        --NotebookApp.password=''
+        --NotebookApp.disable_check_xsrf=True

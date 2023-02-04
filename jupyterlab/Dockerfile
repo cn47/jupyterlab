@@ -1,5 +1,4 @@
 FROM python:3.11.1-slim-buster
-#FROM python:3.9.13-slim-buster
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         curl \
@@ -72,13 +71,24 @@ RUN pip install \
         scikit-learn \
         pendulum \
         plotly \
+        ptpython \
         kaleido \
         tqdm \
     && rm -rf ${HOME}/.pip/cache
 
-ENV PATH=${PATH}:/home/jupyter/.local/bin
+ENV PATH=${PATH}:/home/jupyter/.local/bin \
+    LANG=ja_JP.UTF-8 \
+    LANGUAGE=ja_JP:ja \
+    LC_ALL=ja_JP.UTF-8 \
+    TZ=Asia/Tokyo \
+    TERM=xterm-256color \
+    PYTHONUTF8=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=on \
+    PIP_NO_CACHE_DIR=off
 
 RUN useradd --uid 1000 -G sudo,root jupyter \
     && echo "jupyter ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers.d/1000
 
-RUN pip install ptpython
+WORKDIR /home
