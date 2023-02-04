@@ -546,7 +546,7 @@ c = get_config()  #noqa
 #  default when the notebook server is connected to a terminal, a login shell
 #  otherwise.
 #  Default: {}
-# c.NotebookApp.terminado_settings = {}
+c.NotebookApp.terminado_settings = {'shell_command': ['/bin/bash']}
 
 ## Set to False to disable terminals.
 #  
@@ -965,7 +965,7 @@ c = get_config()  #noqa
 
 ## Allow access to hidden files
 #  Default: False
-# c.ContentsManager.allow_hidden = False
+c.ContentsManager.allow_hidden = True
 
 #  Default: None
 # c.ContentsManager.checkpoints = None

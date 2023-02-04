@@ -2,15 +2,26 @@ version: '3'
 
 services:
   python3:
-    image: python3:3.9.10
+    image: python3:3.11.1
     container_name: 'python3'
     user: 1000:1000
     restart: always
     build:
       context: .
       dockerfile: Dockerfile
-    env_file:
-      - env_file.env
+      args:
+        _HOME=${HOME}
+    environment:
+      - LANG=ja_JP.UTF-8
+      - LANGUAGE=ja_JP:ja
+      - LC_ALL=ja_JP.UTF-8
+      - TZ=Asia/Tokyo
+      - TERM=xterm-256color
+      - PYTHONUTF8=1
+      - PYTHONDONTWRITEBYTECODE=1
+      - PYTHONUNBUFFERED=1
+      - PIP_DISABLE_PIP_VERSION_CHECK=on
+      - PIP_NO_CACHE_DIR=off
     working_dir: /opt
     volumes:
       - /etc/passwd:/etc/passwd:ro
