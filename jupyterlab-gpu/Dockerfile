@@ -18,7 +18,7 @@ RUN pip install \
         torchvision \
         torchaudio \
         albumentations \
-        tensorflow-gpu \
         opencv-python \
         Pillow \
     && rm -rf ${HOME}/.pip/cache
+        # tensorflow-gpu \

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-jupyter_home_path=${HOME}/jupyter-gpu
+jupyter_home_path=${HOME}/.jupyterlab/jupyterlab-gpu
 input_val=$1
 
 export PORT=8888

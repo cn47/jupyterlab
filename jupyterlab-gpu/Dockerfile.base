@@ -48,8 +48,8 @@ RUN wget https://www.python.org/ftp/python/${PYTHON_VER}/Python-${PYTHON_VER}.tg
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py \
-    && ln -sfn /usr/local/bin/python${_PYTHON_VER} /bin/python
-    # && ln -sfn /usr/local/bin/python${_PYTHON_VER} /bin/python3
+    && ln -sfn /usr/local/bin/python${_PYTHON_VER} /bin/python \
+    && cd /usr/local/bin && ln -s /usr/bin/python python3
 
 RUN curl -sL https://deb.nodesource.com/setup_18.x |bash - \
     && apt-get install -y --no-install-recommends \

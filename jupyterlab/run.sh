@@ -1,6 +1,6 @@
 #!/bin/bash
 
-jupyter_home_path=${HOME}/jupyter
+jupyter_home_path=${HOME}/.jupyterlab/jupyterlab
 input_val=$1
 
 export PORT=8888
