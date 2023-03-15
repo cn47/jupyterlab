@@ -80,4 +80,4 @@ ENV PATH=${PATH}:/home/jupyter/.local/bin \
 RUN useradd --uid 1000 -G sudo,root jupyter \
     && echo "jupyter ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers.d/1000
 
-WORKDIR /home
+WORKDIR /home/host

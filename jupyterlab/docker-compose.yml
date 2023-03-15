@@ -3,7 +3,7 @@ version: '3'
 services:
   jupyterlab:
     image: jupyterlab:3.11.1
-    container_name: 'jupyterlab'
+    container_name: jupyterlab
     user: 1000:1000
     restart: always
     build:

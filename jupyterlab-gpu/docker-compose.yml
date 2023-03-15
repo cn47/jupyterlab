@@ -3,7 +3,7 @@ version: '3'
 services:
   jupyterlab-gpu:
     image: jupyterlab-gpu:3.10.9
-    container_name: 'jupyterlab-gpu'
+    container_name: jupyterlab-gpu
     runtime: nvidia
     user: 1000:1000
     restart: always
