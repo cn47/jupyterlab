@@ -46,7 +46,6 @@ RUN pip install \
 
 # extensions
 RUN pip install \
-         jupyter_contrib_nbextensions \
          lckr-jupyterlab-variableinspector \
          jupyterlab_execute_time \
          jupyterlab-code-formatter black isort autopep8 \
@@ -54,6 +53,7 @@ RUN pip install \
          jupyterlab-git \
          stickyland \
          jupyterlab_autoscrollcelloutput \
+         jupyterlab-lsp python-lsp-server \
     && rm -rf ${HOME}/.pip/cache
          # jupyterlab_tabnine \ # disable temporarily
 

@@ -18,6 +18,7 @@ services:
       - ${MOUNT_JUPYTER_NOTEBOOK_SETTINGS}
       - ${MOUNT_IPYTHON_SETTINGS}
       - ${MOUNT_PTPYTHON_SETTINGS}
+      - ${MOUNT_BASHRC}
     expose:
       - ${PORT}
     ports:

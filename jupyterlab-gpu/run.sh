@@ -10,6 +10,7 @@ export MOUNT_JUPYTER_USER_SETTINGS="../jupyter-settings/jupyter_user_settings:/h
 export MOUNT_JUPYTER_NOTEBOOK_SETTINGS="../jupyter-settings/jupyter_notebook_config.py:/home/jupyter/.jupyter/jupyter_notebook_config.py"
 export MOUNT_IPYTHON_SETTINGS="../jupyter-settings/ipython_config.py:/home/jupyter/.ipython/profile_default/ipython_config.py"
 export MOUNT_PTPYTHON_SETTINGS="../jupyter-settings/ptpython_config.py:/home/jupyter/.config/ptpython/config.py"
+export MOUNT_BASHRC="../jupyter-settings/bashrc:/home/jupyter/.bashrc"
 
 main(){
   mkdir -p ${jupyter_home_path}/host
