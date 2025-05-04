@@ -1,4 +1,5 @@
-FROM cn47/jupyterlab-gpu:3.10.9
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
 
 RUN pip install \
         pandas \

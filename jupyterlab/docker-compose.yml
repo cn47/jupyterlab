@@ -9,6 +9,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - BASE_IMAGE=cn47/jupyterlab:3.11.1
     environment:
       - PYTHONPATH=
     volumes:
