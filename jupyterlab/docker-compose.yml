@@ -12,6 +12,7 @@ services:
       dockerfile: Dockerfile
       args:
         - BASE_IMAGE=cn47/${IMAGE_NAME}
+    working_dir: ${WORKING_DIR}
     environment:
       - PYTHONPATH=
     volumes:
