@@ -28,6 +28,7 @@ dependencies = [
     ### viz
     "plotly>=6.0.1",
     "kaleido==0.2.0",
+    "matplotlib==3.10.1",
 ]
 
 # [build-system]
